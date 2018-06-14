@@ -42,3 +42,4 @@
 - [Java Garbage Collection](https://d2.naver.com/helloworld/1329)
 - [Java Reference와 GC](https://d2.naver.com/helloworld/329631)
 - [GC 모니터링 방법](https://d2.naver.com/helloworld/6043)
+- [weakhaspmap](http://www.baeldung.com/java-weakhashmap)
