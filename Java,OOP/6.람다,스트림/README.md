@@ -124,3 +124,5 @@ int sum =
 
 ### reference
 [람다와 스트림](https://rebeccacho.gitbooks.io/java-study-group/content/chapter14.html)
+
+[람다가 이끌어 갈 모던 Java](https://d2.naver.com/helloworld/4911107)
