@@ -28,7 +28,7 @@ public boolean equals(Object other){
 - getClass() 사용하는것이 좋다.
 
 #### instanceof vs getClass()
-![default](https://user-images.githubusercontent.com/23315291/41393382-7b688ab6-6fe0-11e8-8da9-f3803d0c3395.PNG)
+<image src = "https://user-images.githubusercontent.com/23315291/41393382-7b688ab6-6fe0-11e8-8da9-f3803d0c3395.PNG" height ="300" width = "450">
 
 
 #### hashCode() and eqauls()
@@ -51,3 +51,41 @@ public int hashCode(){
 
 
 #### clone 메소드
+- 상태가 같은 또 다른 객체를 생성할 때 사용하는 메소드
+- 규칙 1. x.clone() != x  -> 새 객체의 생성이 필요하다.
+- 규칙 2. x.clone().getClass() == x.getClass() -> 동일한 클래스의 인스턴스이어야 한다.
+- 규칙 3. x.clone().equals(x) == true
+
+- Object의 clone 메소드의 문제점
+    - proteced 메소드
+    - 객체를 자동으로 생성하고, 인스턴스 필드의 값을 자동으로 복사함(swallo copy)
+        - 클래스의 멤버 변수 중에 **참조타입**이 있으면 문제가 됨.
+- 그래서, clone을 오버라이드 하는 경우 Cloneable 인터페이스를 구현!
+~~~
+public class B implements Cloneable{
+    private int n;
+    private A a;
+    …
+    public B clone(){
+        try{
+            B cloned = (B)super.clone();
+            cloned.a = (A)a.clone();
+            return cloned;
+        }
+        catch(CloneNotSupportedException e){
+            return null; // can’t happen
+        }
+    }
+}
+~~~ 
+public class B implements Cloneable{
+    …
+    public B clone(){
+        throws CloneNotSupportException {
+            B cloned = (B)super.clone();
+            cloned.a = (A)a.clone();
+            return cloned;
+        }
+    }
+}
+~~~
