@@ -1,5 +1,5 @@
 ﻿### 안드로이드에서 MVC 패턴
--[MVC-MVP-and-MVVM 종합안내서](https://academy.realm.io/kr/posts/eric-maxwell-mvc-mvp-and-mvvm-on-android/) 의 내용을 정리하였습니다.
+- [MVC-MVP-and-MVVM 종합안내서](https://academy.realm.io/kr/posts/eric-maxwell-mvc-mvp-and-mvvm-on-android/) 의 내용을 정리하였습니다.
 #### 선행지식
 - [unit test](https://www.slideshare.net/youngeunchoi12/springcamp2014-35347399)
 - [의존성 주입](https://blog.perfectacle.com/2017/09/04/di-v1/)

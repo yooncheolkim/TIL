@@ -1,6 +1,6 @@
 ﻿### 안드로이드에서 MVP 패턴
 - [MVC-MVP-and-MVVM 종합안내서](https://academy.realm.io/kr/posts/eric-maxwell-mvc-mvp-and-mvvm-on-android/) 의 내용을 정리하였습니다.
-- MVC 먼저 선행학습 하기..
+- [MVC 먼저 선행학습 하기..](https://github.com/yooncheolkim/TIL/tree/master/Android/2.MVC)
 #### 모델(Model)
 - MVC와 동일
 
