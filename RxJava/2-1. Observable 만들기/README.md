@@ -81,7 +81,7 @@ I@200a570f
 
 
 #### fromCallable()
-- 기존 자바에서 제공하는 비동기 클래스나 인터페이스와의 연동
+- callable : runnable와 다른점은 실행 결과를 리턴한다.(비동기 실행)
 ~~~
         Callable<String> callable1 = new Callable<String>(){
             @Override
@@ -99,4 +99,6 @@ I@200a570f
         Observable<String> source = Observable.fromCallable(callable);
         source.subscribe(System.out::println);
 ~~~
-- 
+
+#### fromFuture() 
+- Future : future 부터 공부하는게....
