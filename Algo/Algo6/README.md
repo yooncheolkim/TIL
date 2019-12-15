@@ -136,3 +136,86 @@ bool hasWord(int y, int x, string word){
 
 
 ### 문제. 소풍
+
+
+~~~java
+package Algo_Picnic;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+    static class Pair{
+        int o1 = 0;
+        int o2 = 0;
+        public Pair(int o1, int o2){
+            this.o1 = o1;
+            this.o2 = o2;
+        }
+    }
+
+    static int C, n , m;
+    static List<Pair> list;
+    static int result = 0;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        C = scanner.nextInt();
+
+        for(int  i = 0 ; i < C ; i ++){
+            n = scanner.nextInt();
+            m = scanner.nextInt();
+
+            list = new ArrayList<>();
+            for(int j = 0; j < m ; j++){
+                int o1 = scanner.nextInt();
+                int o2 = scanner.nextInt();
+                list.add(new Pair(o1,o2));
+            }
+            list.sort((a,b) ->
+                a.o1 < b.o1 ? -1 : 1
+                );
+
+            getSolve(n/2,new ArrayList<Integer>(),n/2);
+            System.out.println(result);
+            result = 0;
+        }
+    }
+
+    //n : 짝의 갯수
+    //picked : 골라진 짝의 인덱스 list
+    //toPick : 골라야할 짝의 갯수
+    static void getSolve(int n , List<Integer> picked, int toPick){
+
+        //기저사례
+        if(toPick == 0 && picked.size() >= n) {result++;}
+
+        int min = picked.isEmpty() ? 0 : picked.get(picked.size()-1) +1;
+
+        for(int i = min ; i < m ; i++){
+            // i를 넣어도 되는지 검사
+            if(isAddOk(picked, i)){
+                picked.add(i);
+                getSolve(n,picked,toPick-1);
+                picked.remove(picked.size()-1);
+            }
+        }
+        return;
+    }
+
+    static boolean isAddOk(List<Integer> picked, int i){
+        Pair p = list.get(i);
+        for(int idx = 0 ; idx < picked.size() ; idx++){
+            if(list.get(picked.get(idx)).o1 == p.o1
+            || list.get(picked.get(idx)).o1 == p.o2
+            || list.get(picked.get(idx)).o2 == p.o1
+            || list.get(picked.get(idx)).o2 == p.o2) return false;
+        }
+        return true;
+    }
+}
+
+~~~
