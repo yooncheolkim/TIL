@@ -219,3 +219,83 @@ public class Main {
 }
 
 ~~~
+
+
+## 최적화 문제
+- n개의 원소중 r개를 순서 없이 골라내는 방법의 수 : 최적화 문제가 아니다.
+- n개의 사과중 r개를 골라 무게의 합을 최대화 하는 문제 : 최적화 문제!(최적의 답을 찾는 문제)
+- 모든 최적화 문제는 완전탐색으로 해결 가능하다!
+
+### 예제. 시계 맞추기
+~~~java
+package Algo_Clocksync;
+
+import java.util.Scanner;
+
+public class Main {
+
+    static int linked[][] = {
+            {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,0},
+            {0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,1},
+            {1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,1,1,1,0,1,0,1,0,0,0},
+            {1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1},
+            {0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1},
+            {0,0,0,0,1,1,0,1,0,0,0,0,0,0,1,1},
+            {0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,1,1,1,0,0,0,1,0,0,0,1,0,0}
+    };
+
+    static int C;
+    static int input[];
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        C = scanner.nextInt();
+
+        for(int i = 0 ; i < C; i++){
+            input = new int[16];
+            for(int j = 0 ; j < 16 ; j++){
+                input[j] = scanner.nextInt();
+            }
+
+            int result = getMinClick(input,0);
+            System.out.println( result == 999999999 ? -1: result);
+        }
+    }
+    // currInfo : 현재 상태
+    // swtch : 지금 누를 스위치
+    static int getMinClick(int[] currInfo, int swtch){
+
+        if(swtch == 10) return isAlign(currInfo) ? 0 : 999999999;
+        int ret = 999999999;
+        for(int cnt = 0 ; cnt < 4 ; cnt++){
+            ret = Math.min(ret, cnt+ getMinClick(currInfo, swtch+1));
+            doClick(swtch, currInfo);
+        }
+        return ret;
+    }
+
+    //모두 12시가 되었는지 확인
+    static boolean isAlign(int[] currInfo){
+        for(int c : currInfo){
+            if(c != 12) return false;
+        }
+        return true;
+    }
+
+
+    static void doClick(int switchNum, int[] currInfo){
+        for(int i = 0 ; i < 16; i++){
+            if(linked[switchNum][i] == 1){
+                currInfo[i] = currInfo[i] + 3;
+                if(currInfo[i] == 15) currInfo[i] = 3;
+            }
+        }
+    }
+
+    
+}
+~~~
